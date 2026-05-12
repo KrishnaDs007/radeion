@@ -1,0 +1,164 @@
+{
+  "brand": {
+    "name": "Radeion.ai",
+    "shortName": "Radeion",
+    "tagline": "Radiant intelligence in action",
+    "description": "A B2B healthcare intelligence platform for payers, providers, ACOs, employers, and public programs that need clinically grounded analytics, automation, and quality assurance."
+  },
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    { "label": "Products", "href": "/products" },
+    { "label": "Solutions", "href": "/solutions" },
+    { "label": "Resources", "href": "/resources" },
+    { "label": "Company", "href": "/company" }
+  ],
+  "hero": {
+    "eyebrow": "Healthcare intelligence for enterprise teams",
+    "title": "Unify clinical decisions, risk analytics, and operational assurance in one AI-ready platform.",
+    "body": "Radeion helps healthcare organizations convert fragmented claims, clinical, and workflow data into explainable insight, governed automation, and measurable quality programs.",
+    "primaryCta": "Request a demo",
+    "secondaryCta": "Explore products",
+    "trustBadges": ["HIPAA-ready architecture", "SOC 2 roadmap", "FHIR-first data model", "Human-reviewed AI evaluations"]
+  },
+  "metrics": [
+    { "label": "Enterprise segments supported", "value": "5", "detail": "Payer, provider, ACO, employer, and government workflows" },
+    { "label": "Core product modules", "value": "6", "detail": "From risk analytics to revenue cycle intelligence" },
+    { "label": "AI evaluation checkpoints", "value": "12+", "detail": "Model quality, traceability, bias review, and clinical QA gates" },
+    { "label": "Integration patterns", "value": "8", "detail": "FHIR, HL7, claims exports, SSO, and warehouse syncs" }
+  ],
+  "products": [
+    {
+      "slug": "risk-analytics",
+      "name": "Risk Analytics",
+      "summary": "Risk scoring, documentation review, and performance intelligence for value-based care teams.",
+      "problem": "Risk teams often reconcile coding, documentation, and financial exposure across disconnected systems.",
+      "outcomes": ["HCC and RAF review queues", "Explainable risk movement views", "Provider performance and gap analysis"],
+      "aiEvaluation": "AI-assisted signals are scored against documentation confidence, model drift, reviewer agreement, and audit traceability before being surfaced.",
+      "features": ["Risk score simulation", "Coding gap prioritization", "Documentation confidence review", "ACO and Medicare Advantage views"],
+      "dataInputs": ["Claims", "Encounter data", "Clinical notes", "Eligibility files"]
+    },
+    {
+      "slug": "clinical-decision-support",
+      "name": "Clinical Decision Support",
+      "summary": "Evidence-aligned order sets, care pathways, and next-best-action prompts for clinical teams.",
+      "problem": "Clinical guidance loses value when it is detached from the workflow where care decisions happen.",
+      "outcomes": ["Configurable order-set guidance", "Care-plan suggestions", "Policy-aware clinical review"],
+      "aiEvaluation": "Recommendations are evaluated for guideline alignment, source freshness, patient-context fit, and escalation requirements.",
+      "features": ["Evidence map builder", "Care pathway library", "Clinical policy search", "Review and approval workflow"],
+      "dataInputs": ["EHR data", "FHIR resources", "Guideline content", "Care management notes"]
+    },
+    {
+      "slug": "population-health",
+      "name": "Population Health",
+      "summary": "Dashboards that identify cohorts, gaps in care, utilization patterns, and quality trends.",
+      "problem": "Population programs need a reliable way to move from broad trends to the exact cohorts that need action.",
+      "outcomes": ["Cohort segmentation", "Quality measure tracking", "Utilization and cost visibility"],
+      "aiEvaluation": "Cohort suggestions are checked for data completeness, fairness indicators, and repeatable measure logic.",
+      "features": ["Chronic cohort builder", "Quality measure hub", "Utilization explorer", "Outreach prioritization"],
+      "dataInputs": ["Claims", "Labs", "Pharmacy", "Care gaps"]
+    },
+    {
+      "slug": "fraud-waste-abuse",
+      "name": "Fraud, Waste & Abuse Detection",
+      "summary": "Explainable anomaly detection for claims, billing patterns, and provider network behavior.",
+      "problem": "Program integrity teams need to detect suspicious behavior without creating opaque black-box investigations.",
+      "outcomes": ["Anomaly queues", "Provider pattern comparison", "Investigation-ready evidence trails"],
+      "aiEvaluation": "Detection models are evaluated for precision, false-positive burden, explainability, and reviewer feedback loops.",
+      "features": ["Claims anomaly scoring", "Peer group benchmarking", "Investigation workspace", "Audit packet exports"],
+      "dataInputs": ["Medical claims", "Pharmacy claims", "Provider rosters", "Payment history"]
+    },
+    {
+      "slug": "care-management",
+      "name": "Care Management",
+      "summary": "Care-team worklists, chronic condition tracking, and intervention orchestration.",
+      "problem": "Care managers need context-rich, prioritized worklists instead of static reports that age quickly.",
+      "outcomes": ["Prioritized intervention lists", "Medication and condition flags", "Longitudinal care views"],
+      "aiEvaluation": "Prioritization is tested against clinical relevance, timeliness, care-team feedback, and actionability.",
+      "features": ["Intervention planner", "Medication reconciliation view", "Condition timeline", "Team handoff notes"],
+      "dataInputs": ["EHR events", "Medication data", "Risk scores", "Care plans"]
+    },
+    {
+      "slug": "revenue-cycle-analytics",
+      "name": "Revenue Cycle Analytics",
+      "summary": "Denial trends, prior authorization intelligence, and reimbursement performance visibility.",
+      "problem": "Revenue teams need to understand where avoidable denials, coding friction, and authorization delays originate.",
+      "outcomes": ["Denial root-cause analysis", "Prior authorization tracking", "Payment variance dashboards"],
+      "aiEvaluation": "Revenue insights are assessed for source traceability, policy match, historical consistency, and review confidence.",
+      "features": ["Denial analytics", "Authorization workflow metrics", "Contract variance review", "Billing documentation insights"],
+      "dataInputs": ["837/835 files", "Authorization data", "Contracts", "Billing notes"]
+    }
+  ],
+  "solutions": [
+    {
+      "slug": "payers",
+      "name": "Payers & Health Plans",
+      "summary": "Improve risk, quality, network, utilization, and program integrity decisions across health plan operations.",
+      "priorities": ["Risk adjustment confidence", "FWA detection", "Utilization and network transparency", "Member quality programs"]
+    },
+    {
+      "slug": "health-systems",
+      "name": "Health Systems & Hospitals",
+      "summary": "Support clinical decision-making, quality programs, documentation, and operational review across care settings.",
+      "priorities": ["Clinical decision support", "Care pathway governance", "Revenue cycle visibility", "Quality improvement"]
+    },
+    {
+      "slug": "acos",
+      "name": "ACOs & Value-Based Care",
+      "summary": "Coordinate performance across attributed lives, risk contracts, care gaps, and provider engagement.",
+      "priorities": ["Attributed population views", "Care gap closure", "Risk and quality alignment", "Provider performance analytics"]
+    },
+    {
+      "slug": "employers",
+      "name": "Self-Insured Employers",
+      "summary": "Understand healthcare spend, program performance, and workforce health trends without direct patient engagement.",
+      "priorities": ["Cost trend intelligence", "Benefit program performance", "Population health insights", "Vendor evaluation"]
+    },
+    {
+      "slug": "government",
+      "name": "Government & Medicaid",
+      "summary": "Modernize public program analytics with governed workflows, transparent quality measurement, and audit-ready reporting.",
+      "priorities": ["Program integrity", "Quality reporting", "Medicaid population analytics", "Policy-aligned review"]
+    }
+  ],
+  "platform": {
+    "title": "Built for governed healthcare data",
+    "layers": [
+      { "name": "Data ingestion", "items": ["FHIR", "HL7", "CSV exports", "Claims files", "Warehouse sync"] },
+      { "name": "Quality assurance", "items": ["Schema checks", "Lineage", "Clinical validation", "Human review"] },
+      { "name": "AI intelligence", "items": ["Explainable models", "LLM search", "Evaluation gates", "Audit trails"] },
+      { "name": "Workflow delivery", "items": ["Dashboards", "Worklists", "APIs", "Role-based review"] }
+    ]
+  },
+  "caseStudies": [
+    {
+      "title": "Health plan risk review concept",
+      "segment": "Payer",
+      "result": "Earlier visibility into documentation gaps using AI-evaluated review queues.",
+      "status": "Sample concept"
+    },
+    {
+      "title": "Clinical pathway governance concept",
+      "segment": "Health system",
+      "result": "A structured review model for keeping care pathways aligned with current guidance.",
+      "status": "Sample concept"
+    },
+    {
+      "title": "ACO population intelligence concept",
+      "segment": "Value-based care",
+      "result": "Unified care-gap, risk, and utilization views for attributed populations.",
+      "status": "Sample concept"
+    }
+  ],
+  "trust": [
+    "HIPAA program design",
+    "SOC 2 Type II preparation",
+    "HL7/FHIR interoperability",
+    "SSO and role-based access",
+    "Audit logs and data lineage",
+    "AI evaluation governance"
+  ],
+  "demo": {
+    "title": "See how Radeion would fit your organization",
+    "body": "Share the workflow you want to improve. The current form saves mock submissions locally in JSON for review until the email engine is added."
+  }
+}
