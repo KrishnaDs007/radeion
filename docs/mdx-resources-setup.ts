@@ -9,7 +9,7 @@
   3. Define frontmatter fields:
      title, description, publishedAt, segment, author, tags, status.
   4. Render resource index pages from typed content collections.
-  5. Keep metrics, products, and solution copy in src/data/site.json unless the content becomes long-form.
+  5. Keep short page copy directly in page/component files unless the content becomes long-form.
 */
 
 export {};

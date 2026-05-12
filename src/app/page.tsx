@@ -1,5 +1,4 @@
 import { CaseStudyCards, Hero, MetricsStrip, PlatformLayers, ProductGrid, SectionIntro, SolutionGrid, TrustGrid } from "@/components/sections";
-import site from "@/data/site.json";
 
 export default function Home() {
   return (
@@ -30,10 +29,10 @@ export default function Home() {
             <p className="text-2xl font-black">Sample use case language</p>
             <p className="mt-4 leading-7 text-[var(--muted)]">Radeion can surface likely documentation gaps, care-pathway variance, or suspicious claims behavior, then route those signals through configurable review queues before they are used in operations or reporting.</p>
             <div className="mt-6 grid gap-3 md:grid-cols-3">
-              {site.caseStudies.map((study) => (
-                <div className="rounded-md border border-[var(--line)] bg-[var(--surface-strong)] p-4" key={study.title}>
-                  <p className="text-sm font-black">{study.segment}</p>
-                  <p className="mt-2 text-xs leading-5 text-[var(--muted)]">{study.result}</p>
+              {["Payer", "Health system", "Value-based care"].map((segment) => (
+                <div className="rounded-md border border-[var(--line)] bg-[var(--surface-strong)] p-4" key={segment}>
+                  <p className="text-sm font-black">{segment}</p>
+                  <p className="mt-2 text-xs leading-5 text-[var(--muted)]">AI-assisted signals are routed through configurable review queues before operational use.</p>
                 </div>
               ))}
             </div>

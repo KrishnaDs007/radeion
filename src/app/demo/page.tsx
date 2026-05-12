@@ -1,12 +1,11 @@
 import { DemoForm } from "@/components/demo-form";
 import { SectionIntro } from "@/components/sections";
-import site from "@/data/site.json";
 
 export default function DemoPage() {
   return (
     <main className="section grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
-        <SectionIntro eyebrow="Demo" title={site.demo.title} body={site.demo.body} />
+        <SectionIntro eyebrow="Demo" title="See how Radeion would fit your organization" body="Share the workflow you want to improve. The current form saves mock submissions locally in JSON for review until the email engine is added." />
         <div className="card p-6">
           <p className="text-xl font-black">What the demo can cover</p>
           <div className="mt-5 grid gap-3">

@@ -8,15 +8,13 @@ Radeion.ai is a Next.js healthcare intelligence website for a B2B platform inspi
 - TypeScript
 - Tailwind CSS v4
 - CSS-only animation and theme handling
-- JSON-driven product, solution, metric, case-study, and trust content
+- Normal page/component-based content with no JSON content dependency
 
 ## Routes
 
 - `/`
 - `/products`
-- `/products/[slug]`
 - `/solutions`
-- `/solutions/[slug]`
 - `/resources`
 - `/company`
 - `/demo`
@@ -25,19 +23,14 @@ Radeion.ai is a Next.js healthcare intelligence website for a B2B platform inspi
 
 ## Editable Content
 
-Most site content lives in `src/data/site.json`.
+Edit content directly in page and component files:
 
-Use that file to update:
-
-- Brand copy
-- Navigation
-- Hero copy
-- Metrics
-- Product modules
-- Solution segments
-- Platform layers
-- Sample case studies
-- Trust and compliance placeholders
+- `src/app/page.tsx`
+- `src/app/products/page.tsx`
+- `src/app/solutions/page.tsx`
+- `src/app/company/page.tsx`
+- `src/components/sections.tsx`
+- `src/components/site-header.tsx`
 
 ## Demo Requests
 
@@ -46,6 +39,8 @@ The demo form posts to `/api/demo-requests` and saves mock submissions to `data/
 This is for local prototyping only. Replace it with an email engine, CRM workflow, or database-backed submission flow before production.
 
 ## Future Content
+
+See `docs/developer-walkthrough.md` for a complete codebase map and developer onboarding guide.
 
 See `docs/mdx-resources-setup.ts` for the commented MDX resource plan.
 

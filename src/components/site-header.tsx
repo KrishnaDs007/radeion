@@ -2,50 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import site from "@/data/site.json";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-const menuGroups = [
-  {
-    label: "Products",
-    href: "/products",
-    kicker: "Intelligence modules",
-    items: site.products.map((product) => ({
-      label: product.name,
-      href: `/products/${product.slug}`,
-      description: product.summary,
-    })),
-  },
-  {
-    label: "Solutions",
-    href: "/solutions",
-    kicker: "By organization",
-    items: site.solutions.map((solution) => ({
-      label: solution.name,
-      href: `/solutions/${solution.slug}`,
-      description: solution.summary,
-    })),
-  },
-  {
-    label: "Resources",
-    href: "/resources",
-    kicker: "Research and proof",
-    items: [
-      { label: "Case study concepts", href: "/resources", description: "Starter structures for future validated outcomes." },
-      { label: "Security", href: "/security", description: "Trust, compliance, and assurance roadmap." },
-      { label: "Privacy", href: "/privacy", description: "Policy surfaces for future legal review." },
-    ],
-  },
-  {
-    label: "Company",
-    href: "/company",
-    kicker: "About Radeion",
-    items: [
-      { label: "Company overview", href: "/company", description: "Operating principles and enterprise direction." },
-      { label: "Contact", href: "/company#contact", description: "Talk with the team about a workflow or partnership." },
-      { label: "Request demo", href: "/demo", description: "Share your use case and segment." },
-    ],
-  },
+const productLinks = [
+  "Risk Analytics",
+  "Clinical Decision Support",
+  "Population Health",
+  "Fraud, Waste & Abuse",
+  "Care Management",
+  "Revenue Cycle Analytics",
+];
+
+const solutionLinks = [
+  "Payers & Health Plans",
+  "Health Systems & Hospitals",
+  "ACOs & Value-Based Care",
+  "Self-Insured Employers",
+  "Government & Medicaid",
 ];
 
 export function SiteHeader() {
@@ -55,38 +28,31 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-3" aria-label="Radeion home">
           <Image src="/radeion-wordmark.png" alt="Radeion.ai logo" width={255} height={58} priority className="h-10 w-auto object-contain" />
         </Link>
+
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-          <Link className="nav-trigger" href="/">
-            Home
-          </Link>
-          {menuGroups.map((group) => (
-            <div className="nav-group" key={group.label}>
-              <Link className="nav-trigger" href={group.href}>
-                {group.label}
-                <span aria-hidden>▾</span>
-              </Link>
-              <div className="mega-menu">
-                <div className="mega-menu-inner">
-                  <div className="mega-menu-panel">
-                    <p className="eyebrow">{group.kicker}</p>
-                    <p className="mt-3 text-2xl font-black">{group.label}</p>
-                    <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                      Navigate by workflow, buyer segment, or trust surface without losing context.
-                    </p>
-                  </div>
-                  <div className="mega-menu-links">
-                    {group.items.map((item) => (
-                      <Link className="mega-menu-link" href={item.href} key={item.href}>
-                        <span className="font-black">{item.label}</span>
-                        <span className="mt-1 block text-xs leading-5 text-[var(--muted)]">{item.description}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          <Link className="nav-trigger" href="/">Home</Link>
+
+          <div className="nav-group">
+            <Link className="nav-trigger" href="/products">Products <span aria-hidden>▾</span></Link>
+            <MegaMenu title="Products" kicker="Intelligence modules" href="/products" items={productLinks} />
+          </div>
+
+          <div className="nav-group">
+            <Link className="nav-trigger" href="/solutions">Solutions <span aria-hidden>▾</span></Link>
+            <MegaMenu title="Solutions" kicker="By organization" href="/solutions" items={solutionLinks} />
+          </div>
+
+          <div className="nav-group">
+            <Link className="nav-trigger" href="/resources">Resources <span aria-hidden>▾</span></Link>
+            <MegaMenu title="Resources" kicker="Research and trust" href="/resources" items={["Resource center", "Security", "Privacy"]} />
+          </div>
+
+          <div className="nav-group">
+            <Link className="nav-trigger" href="/company">Company <span aria-hidden>▾</span></Link>
+            <MegaMenu title="Company" kicker="About Radeion" href="/company" items={["Company overview", "Contact", "Request demo"]} />
+          </div>
         </nav>
+
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Link className="button-primary hidden sm:inline-flex" href="/demo">
@@ -96,4 +62,36 @@ export function SiteHeader() {
       </div>
     </header>
   );
+}
+
+function MegaMenu({ title, kicker, href, items }: { title: string; kicker: string; href: string; items: string[] }) {
+  return (
+    <div className="mega-menu">
+      <div className="mega-menu-inner">
+        <div className="mega-menu-panel">
+          <p className="eyebrow">{kicker}</p>
+          <p className="mt-3 text-2xl font-black">{title}</p>
+          <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+            Open the main page for full details, then update sections directly in the page files.
+          </p>
+        </div>
+        <div className="mega-menu-links">
+          {items.map((item) => (
+            <Link className="mega-menu-link" href={getMenuHref(item, href)} key={item}>
+              <span className="font-black">{item}</span>
+              <span className="mt-1 block text-xs leading-5 text-[var(--muted)]">View this section on the main {title.toLowerCase()} page.</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function getMenuHref(item: string, fallbackHref: string) {
+  if (item === "Security") return "/security";
+  if (item === "Privacy") return "/privacy";
+  if (item === "Request demo") return "/demo";
+  if (item === "Contact") return "/company#contact";
+  return fallbackHref;
 }
