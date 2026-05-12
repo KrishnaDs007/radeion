@@ -98,7 +98,7 @@ export function Hero() {
     <section className="section hero-shell grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
       <div className="fade-up">
         <div className="brand-kicker">
-          <Image src="/radeion-mark.png" alt="" width={52} height={52} className="h-10 w-10 object-contain" />
+          <Image src="/radeion-mark.png" alt="" width={52} height={52} className="theme-logo h-10 w-10 object-contain" />
           <span>Radiant intelligence in action</span>
         </div>
         <p className="eyebrow">Healthcare intelligence for enterprise teams</p>

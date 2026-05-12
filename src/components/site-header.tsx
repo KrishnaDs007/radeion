@@ -1,7 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
+import { MobileMenu } from "@/components/mobile-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const productLinks = [
@@ -21,12 +20,19 @@ const solutionLinks = [
   "Government & Medicaid",
 ];
 
+const mobileGroups = [
+  { title: "Products", href: "/products", items: productLinks },
+  { title: "Solutions", href: "/solutions", items: solutionLinks },
+  { title: "Resources", href: "/resources", items: ["Resource center", "Security", "Privacy"] },
+  { title: "Company", href: "/company", items: ["Company overview", "Contact", "Request demo"] },
+];
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[color-mix(in_srgb,var(--surface)_88%,transparent)] backdrop-blur-xl">
-      <div className="mx-auto flex max-w-[1180px] items-center justify-between gap-5 px-5 py-3">
+      <div className="mx-auto flex max-w-[1180px] items-center justify-between gap-3 px-4 py-3 sm:px-5">
         <Link href="/" className="flex items-center gap-3" aria-label="Radeion home">
-          <Image src="/radeion-wordmark.png" alt="Radeion.ai logo" width={255} height={58} priority className="h-10 w-auto object-contain" />
+          <Image src="/radeion-wordmark.png" alt="Radeion.ai logo" width={255} height={58} priority className="theme-logo h-8 w-auto object-contain sm:h-10" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
@@ -58,6 +64,7 @@ export function SiteHeader() {
           <Link className="button-primary hidden sm:inline-flex" href="/demo">
             Request demo
           </Link>
+          <MobileMenu groups={mobileGroups} />
         </div>
       </div>
     </header>

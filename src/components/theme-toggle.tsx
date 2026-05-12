@@ -1,47 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+type Theme = "light" | "dark";
 
-type Theme = "system" | "light" | "dark";
+function readTheme(): Theme {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  if (currentTheme === "light" || currentTheme === "dark") return currentTheme;
+
+  const savedTheme = window.localStorage.getItem("radeion-theme");
+  if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
 
 function applyTheme(nextTheme: Theme) {
   const root = document.documentElement;
-  root.removeAttribute("data-theme");
-  if (nextTheme !== "system") {
-    root.setAttribute("data-theme", nextTheme);
-  }
+  root.setAttribute("data-theme", nextTheme);
   window.localStorage.setItem("radeion-theme", nextTheme);
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") return "system";
-    return (window.localStorage.getItem("radeion-theme") as Theme | null) ?? "system";
-  });
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    applyTheme(theme);
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const resolve = () => setResolvedTheme(theme === "system" ? (mediaQuery.matches ? "dark" : "light") : theme);
-    resolve();
-    mediaQuery.addEventListener("change", resolve);
-    return () => mediaQuery.removeEventListener("change", resolve);
-  }, [theme]);
-
   function toggleTheme() {
-    const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
+    const theme = readTheme();
+    applyTheme(theme === "dark" ? "light" : "dark");
   }
 
   return (
     <button
       className="theme-switch"
-      data-mode={resolvedTheme}
       onClick={toggleTheme}
       type="button"
-      title={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`}
-      aria-label={`Switch theme. Current theme is ${resolvedTheme}`}
+      title="Switch theme"
+      aria-label="Switch theme"
     >
       <span className="theme-icon theme-sun" aria-hidden>
         <svg viewBox="0 0 24 24" role="img">
