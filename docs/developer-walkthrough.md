@@ -47,7 +47,8 @@ src/app/
   demo/page.tsx               Demo request page
   security/page.tsx           Security page
   privacy/page.tsx            Privacy page
-  api/demo-requests/route.ts  Mock demo request API
+  api/demo-requests/route.ts  Demo request API and email sender
+  api/contact-requests/route.ts Company contact API and email sender
 ```
 
 There are no routes like `/products/[slug]` or `/solutions/[slug]` anymore.
@@ -137,11 +138,29 @@ It saves local prototype submissions here:
 data/demo-requests.json
 ```
 
-The Company page contact form is only a frontend prototype right now:
+It also sends the request through Resend.
+
+The Company page contact form posts to:
 
 ```text
-src/components/contact-form.tsx
+src/app/api/contact-requests/route.ts
 ```
+
+Both forms send email to `admin@radeion.ai` through:
+
+```text
+src/lib/email/resend-mailer.ts
+```
+
+Required environment variables:
+
+```text
+RESEND_API_KEY
+RESEND_FROM_EMAIL
+RESEND_TO_EMAIL
+```
+
+See `.env.example` for the expected format.
 
 ## Common Tasks
 

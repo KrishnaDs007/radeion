@@ -34,9 +34,32 @@ Edit content directly in page and component files:
 
 ## Demo Requests
 
-The demo form posts to `/api/demo-requests` and saves mock submissions to `data/demo-requests.json`.
+The demo form posts to `/api/demo-requests`, sends an email through Resend, and saves a local development copy to `data/demo-requests.json`.
 
-This is for local prototyping only. Replace it with an email engine, CRM workflow, or database-backed submission flow before production.
+The company contact form posts to `/api/contact-requests` and sends an email through Resend.
+
+Required environment variables:
+
+```bash
+RESEND_API_KEY=re_your_resend_api_key
+RESEND_FROM_EMAIL=Radeion Website <onboarding@resend.dev>
+RESEND_TO_EMAIL=your_verified_resend_recipient@example.com
+```
+
+Emails are sent to `RESEND_TO_EMAIL`. If it is not set, the app falls back to `admin@radeion.ai`.
+
+For local or Vercel testing before `radeion.ai` is verified, use Resend's sandbox sender:
+
+```bash
+RESEND_FROM_EMAIL=Radeion Website <onboarding@resend.dev>
+```
+
+Resend may only allow sandbox emails to be sent to the email address verified in your Resend account. After verifying `radeion.ai`, switch to:
+
+```bash
+RESEND_FROM_EMAIL=Radeion Website <hello@radeion.ai>
+RESEND_TO_EMAIL=admin@radeion.ai
+```
 
 ## Future Content
 
