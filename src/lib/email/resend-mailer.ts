@@ -22,7 +22,7 @@ function getResendClient() {
 }
 
 function getFromEmail() {
-  return process.env.RESEND_FROM_EMAIL ?? "Radeion Website <onboarding@resend.dev>";
+  return process.env.RESEND_FROM_EMAIL ?? "Radeion Website <admin@radeion.ai>";
 }
 
 function getToEmail() {

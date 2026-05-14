@@ -36,32 +36,96 @@ window.addEventListener("popstate", function () {
 });
 `;
 
+const siteUrl = "https://www.radeion.ai";
+const siteHomeUrl = `${siteUrl}/`;
+const siteImageUrl = `${siteUrl}/radeion-wordmark.png`;
+const siteDescription =
+  "Radeion.ai helps healthcare enterprises unify clinical decision support, AI evaluation workflows, quality assurance, risk intelligence, and governed automation across payer, provider, ACO, employer, and public-sector teams.";
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Radeion.ai",
+    url: siteHomeUrl,
+    logo: siteImageUrl,
+    description: siteDescription,
+    slogan: "Radiant Intelligence in Action",
+    sameAs: [siteHomeUrl],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Radeion.ai",
+    url: siteHomeUrl,
+    description: siteDescription,
+    inLanguage: "en-US",
+    publisher: {
+      "@type": "Organization",
+      name: "Radeion.ai",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Radeion.ai Healthcare Intelligence Platform",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: siteHomeUrl,
+    description: siteDescription,
+    offers: {
+      "@type": "Offer",
+      description: "Enterprise pricing is provided through a custom demo and consultation.",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "USD",
+        description: "Custom enterprise pricing",
+      },
+    },
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Healthcare enterprises, payers, providers, ACOs, employers, and public-sector healthcare teams",
+    },
+  },
+];
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://radeion.ai"),
+  metadataBase: new URL(siteUrl),
   applicationName: "Radeion.ai",
   title: {
-    default: "Radeion.ai | Healthcare Intelligence Platform",
+    default: "Radeion.ai | Healthcare AI Intelligence and Quality Automation",
     template: "%s | Radeion.ai",
   },
-  description: "A B2B healthcare intelligence platform for clinical decisions, risk analytics, quality assurance, and governed automation.",
+  description: siteDescription,
   keywords: [
+    "Radeion.ai",
     "healthcare intelligence platform",
+    "healthcare AI platform",
     "clinical decision support",
     "risk analytics",
+    "AI evaluations healthcare",
+    "quality assurance automation",
+    "healthcare data quality",
     "population health analytics",
-    "healthcare AI",
+    "healthcare workflow automation",
     "payer analytics",
+    "provider analytics",
+    "ACO analytics",
     "value based care",
-    "fraud waste abuse detection",
+    "healthcare compliance automation",
     "revenue cycle analytics",
     "FHIR healthcare platform",
+    "enterprise healthcare SaaS",
   ],
   authors: [{ name: "Radeion.ai" }],
   creator: "Radeion.ai",
   publisher: "Radeion.ai",
+  referrer: "origin-when-cross-origin",
   category: "Healthcare Technology",
+  classification: "Enterprise healthcare artificial intelligence, clinical decision support, data quality, and automation platform",
+  abstract: "Enterprise B2B healthcare intelligence for clinical decision support, AI evaluations, risk insight, quality assurance, and governed automation.",
   alternates: {
-    canonical: "/",
+    canonical: siteHomeUrl,
   },
   icons: {
     icon: [
@@ -73,24 +137,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://radeion.ai",
+    url: siteHomeUrl,
     siteName: "Radeion.ai",
-    title: "Radeion.ai | Healthcare Intelligence Platform",
-    description: "Unify clinical decisions, risk analytics, quality assurance, and governed automation for B2B healthcare teams.",
+    title: "Radeion.ai | Healthcare AI Intelligence and Quality Automation",
+    description: siteDescription,
     images: [
       {
-        url: "/radeion-wordmark.png",
+        url: siteImageUrl,
         width: 1393,
         height: 282,
-        alt: "Radeion.ai",
+        alt: "Radeion.ai healthcare intelligence platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Radeion.ai | Healthcare Intelligence Platform",
-    description: "AI-ready healthcare intelligence for risk, quality, clinical decision support, and operational assurance.",
-    images: ["/radeion-wordmark.png"],
+    title: "Radeion.ai | Healthcare AI Intelligence and Quality Automation",
+    description: siteDescription,
+    images: [siteImageUrl],
   },
   robots: {
     index: true,
@@ -107,6 +171,12 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false,
+  },
+  other: {
+    "business:contact_data:website": siteHomeUrl,
+    "canonical:domain": siteHomeUrl,
+    "industry": "Healthcare Technology",
+    "product:type": "Enterprise SaaS",
   },
 };
 
@@ -129,6 +199,7 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </head>
       <body>
         <script

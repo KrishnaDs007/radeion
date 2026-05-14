@@ -7,24 +7,17 @@ export const runtime = "nodejs";
 
 const storagePath = path.join(process.cwd(), "data", "demo-requests.json");
 
-export async function POST(request: Request) {
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+async function saveDemoRequestLocally(record: unknown) {
+  if (process.env.VERCEL) {
+    console.info("Skipping local demo request JSON save on Vercel.");
+    return;
+  }
+
   try {
-    const body = await request.json();
-    const record = {
-      id: crypto.randomUUID(),
-      createdAt: new Date().toISOString(),
-      name: String(body.name ?? ""),
-      email: String(body.email ?? ""),
-      organization: String(body.organization ?? ""),
-      role: String(body.role ?? ""),
-      segment: String(body.segment ?? ""),
-      problem: String(body.problem ?? "")
-    };
-
-    if (!record.name || !record.email || !record.organization) {
-      return NextResponse.json({ error: "Name, email, and organization are required." }, { status: 400 });
-    }
-
     await fs.mkdir(path.dirname(storagePath), { recursive: true });
     let existing: unknown[] = [];
     try {
@@ -34,6 +27,34 @@ export async function POST(request: Request) {
     }
     existing.push(record);
     await fs.writeFile(storagePath, `${JSON.stringify(existing, null, 2)}\n`);
+  } catch (error) {
+    console.warn("Unable to save demo request JSON locally. Continuing with email delivery.", error);
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const record = {
+      id: crypto.randomUUID(),
+      createdAt: new Date().toISOString(),
+      name: String(body.name ?? "").trim(),
+      email: String(body.email ?? "").trim(),
+      organization: String(body.organization ?? "").trim(),
+      role: String(body.role ?? "").trim(),
+      segment: String(body.segment ?? "").trim(),
+      problem: String(body.problem ?? "").trim(),
+    };
+
+    if (!record.name || !record.email || !record.organization || !record.role || !record.segment || !record.problem) {
+      return NextResponse.json({ error: "All demo request fields are required." }, { status: 400 });
+    }
+
+    if (!isValidEmail(record.email)) {
+      return NextResponse.json({ error: "Enter a valid work email address." }, { status: 400 });
+    }
+
+    await saveDemoRequestLocally(record);
 
     await sendFormEmail({
       subject: "New demo request",
@@ -54,6 +75,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, id: record.id });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unable to save demo request.";
+    console.error("Demo request failed", error);
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

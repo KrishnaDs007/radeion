@@ -42,24 +42,20 @@ Required environment variables:
 
 ```bash
 RESEND_API_KEY=re_your_resend_api_key
-RESEND_FROM_EMAIL=Radeion Website <onboarding@resend.dev>
-RESEND_TO_EMAIL=your_verified_resend_recipient@example.com
+RESEND_FROM_EMAIL=Radeion Website <admin@radeion.ai>
+RESEND_TO_EMAIL=admin@radeion.ai
 ```
 
 Emails are sent to `RESEND_TO_EMAIL`. If it is not set, the app falls back to `admin@radeion.ai`.
 
-For local or Vercel testing before `radeion.ai` is verified, use Resend's sandbox sender:
+Use the same values locally and in Vercel once `radeion.ai` is verified in Resend DNS:
 
 ```bash
-RESEND_FROM_EMAIL=Radeion Website <onboarding@resend.dev>
-```
-
-Resend may only allow sandbox emails to be sent to the email address verified in your Resend account. After verifying `radeion.ai`, switch to:
-
-```bash
-RESEND_FROM_EMAIL=Radeion Website <hello@radeion.ai>
+RESEND_FROM_EMAIL=Radeion Website <admin@radeion.ai>
 RESEND_TO_EMAIL=admin@radeion.ai
 ```
+
+The website host can be `localhost`, `radeion.vercel.app`, or `www.radeion.ai`; Resend only requires the sender domain in `RESEND_FROM_EMAIL` to be verified. The demo form also saves a local development copy to `data/demo-requests.json`, but skips that JSON save on Vercel because production functions should send email instead of writing runtime files.
 
 ## Future Content
 

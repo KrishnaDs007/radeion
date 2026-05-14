@@ -3,6 +3,10 @@ import { sendFormEmail } from "@/lib/email/resend-mailer";
 
 export const runtime = "nodejs";
 
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -14,8 +18,12 @@ export async function POST(request: Request) {
       message: String(body.message ?? "").trim(),
     };
 
-    if (!record.name || !record.email) {
-      return NextResponse.json({ error: "Name and email are required." }, { status: 400 });
+    if (!record.name || !record.email || !record.organization || !record.interest || !record.message) {
+      return NextResponse.json({ error: "All contact form fields are required." }, { status: 400 });
+    }
+
+    if (!isValidEmail(record.email)) {
+      return NextResponse.json({ error: "Enter a valid work email address." }, { status: 400 });
     }
 
     await sendFormEmail({
@@ -34,6 +42,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unable to send contact request.";
+    console.error("Contact request failed", error);
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
